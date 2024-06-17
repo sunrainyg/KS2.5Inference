@@ -1,0 +1,62 @@
+{
+    "model": "kosmos 2.5",
+    "task": "ocr",
+    "width": 500,
+    "height": 591,
+    "results": [
+        {
+            "text": "ont aux ont aux ont aux \u00bb aux ont aux ont aux \u00bb aux nous ont aux ont moi",
+            "bounding box": {
+                "x0": 9,
+                "y0": 12,
+                "x1": 435,
+                "y1": 78
+            }
+        },
+        {
+            "text": "aux nouses \u00bb aux \u00bb aux \u00bb aux \u00bb aux ont aux moi",
+            "bounding box": {
+                "x0": 9,
+                "y0": 81,
+                "x1": 317,
+                "y1": 148
+            }
+        },
+        {
+            "text": "es \u00bbes ontes ontes \u00bbes nous \u00bb moi",
+            "bounding box": {
+                "x0": 9,
+                "y0": 152,
+                "x1": 381,
+                "y1": 218
+            }
+        },
+        {
+            "text": "es ontes ontes \u00bbes \u00bbes nouses ont moi",
+            "bounding box": {
+                "x0": 9,
+                "y0": 222,
+                "x1": 419,
+                "y1": 291
+            }
+        },
+        {
+            "text": "nouses nous \u00bbes moi",
+            "bounding box": {
+                "x0": 9,
+                "y0": 293,
+                "x1": 145,
+                "y1": 360
+            }
+        },
+        {
+            "text": "es ont aux \u00bb aux nouses moi",
+            "bounding box": {
+                "x0": 9,
+                "y0": 430,
+                "x1": 233,
+                "y1": 496
+            }
+        }
+    ]
+}

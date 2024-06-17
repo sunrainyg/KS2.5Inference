@@ -1,0 +1,211 @@
+generator: SequenceGenerator(
+  (model): EnsembleModel(
+    (single_model): MultimodalLanguageModel(
+        (decoder): LMDecoder(
+        (dropout_module): Dropout(p=0.0, inplace=False)
+        (embed_tokens): Embedding(40196, 768, padding_idx=32000)
+        (embed_positions): LearnedPositionalEmbedding(34411, 768, padding_idx=32000)
+        (output_projection): Linear(in_features=768, out_features=40196, bias=False)
+        (layers): ModuleList(
+          (0-19): 20 x DecoderLayer(
+            (dropout_module): Dropout(p=0.0, inplace=False)
+            (self_attn): MultiheadAttention(
+              (k_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+              (v_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+              (q_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+              (out_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+              (dropout_module): Dropout(p=0.0, inplace=False)
+            )
+            (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (ffn): FeedForwardNetwork(
+              (activation_dropout_module): Dropout(p=0.0, inplace=False)
+              (dropout_module): Dropout(p=0.0, inplace=False)
+              (fc1): QuantizeLinear(in_features=768, out_features=2736, bias=True)
+              (fc2): QuantizeLinear(in_features=2736, out_features=768, bias=True)
+              (fc3): QuantizeLinear(in_features=768, out_features=2736, bias=True)
+            )
+            (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      )
+      (image_tokenizer): VQKD(
+        (encoder): VisionTransformer(
+          (patch_embed): PatchEmbed(
+            (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+          )
+          (pos_drop): Dropout(p=0.0, inplace=False)
+          (blocks): ModuleList(
+            (0-11): 12 x Block(
+              (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+              (attn): Attention(
+                (qkv): Linear(in_features=768, out_features=2304, bias=False)
+                (attn_drop): Dropout(p=0.0, inplace=False)
+                (proj): Linear(in_features=768, out_features=768, bias=True)
+                (proj_drop): Dropout(p=0.0, inplace=False)
+              )
+              (drop_path): Identity()
+              (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+              (mlp): Mlp(
+                (fc1): Linear(in_features=768, out_features=3072, bias=True)
+                (act): GELU(approximate='none')
+                (fc2): Linear(in_features=3072, out_features=768, bias=True)
+                (drop): Dropout(p=0.0, inplace=False)
+              )
+            )
+          )
+          (norm): Identity()
+          (fc_norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+          (head): Identity()
+        )
+        (decoder): VisionTransformer(
+          (patch_embed): PatchEmbed(
+            (proj): Conv2d(32, 768, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (pos_drop): Dropout(p=0.0, inplace=False)
+          (blocks): ModuleList(
+            (0): Block(
+              (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+              (attn): Attention(
+                (qkv): Linear(in_features=768, out_features=2304, bias=False)
+                (attn_drop): Dropout(p=0.0, inplace=False)
+                (proj): Linear(in_features=768, out_features=768, bias=True)
+                (proj_drop): Dropout(p=0.0, inplace=False)
+              )
+              (drop_path): Identity()
+              (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+              (mlp): Mlp(
+                (fc1): Linear(in_features=768, out_features=3072, bias=True)
+                (act): GELU(approximate='none')
+                (fc2): Linear(in_features=3072, out_features=768, bias=True)
+                (drop): Dropout(p=0.0, inplace=False)
+              )
+            )
+          )
+          (norm): Identity()
+          (fc_norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+          (head): Identity()
+        )
+        (quantize): NormEMAVectorQuantizer(
+          (embedding): EmbeddingEMA()
+          (all_reduce_fn): Identity()
+        )
+        (encode_task_layer): Sequential(
+          (0): Linear(in_features=768, out_features=768, bias=True)
+          (1): Tanh()
+          (2): Linear(in_features=768, out_features=32, bias=True)
+        )
+        (decode_task_layer): Sequential(
+          (0): Linear(in_features=768, out_features=768, bias=True)
+          (1): Tanh()
+          (2): Linear(in_features=768, out_features=512, bias=True)
+        )
+      )
+    )
+    (models): ModuleList(
+      (0): MultimodalLanguageModel(
+        (decoder): LMDecoder(
+          (dropout_module): Dropout(p=0.0, inplace=False)
+          (embed_tokens): Embedding(40196, 768, padding_idx=32000)
+          (embed_positions): LearnedPositionalEmbedding(34411, 768, padding_idx=32000)
+          (output_projection): Linear(in_features=768, out_features=40196, bias=False)
+          (layers): ModuleList(
+            (0-19): 20 x DecoderLayer(
+              (dropout_module): Dropout(p=0.0, inplace=False)
+              (self_attn): MultiheadAttention(
+                (k_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+                (v_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+                (q_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+                (out_proj): QuantizeLinear(in_features=768, out_features=768, bias=True)
+                (dropout_module): Dropout(p=0.0, inplace=False)
+              )
+              (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+              (ffn): FeedForwardNetwork(
+                (activation_dropout_module): Dropout(p=0.0, inplace=False)
+                (dropout_module): Dropout(p=0.0, inplace=False)
+                (fc1): QuantizeLinear(in_features=768, out_features=2736, bias=True)
+                (fc2): QuantizeLinear(in_features=2736, out_features=768, bias=True)
+                (fc3): QuantizeLinear(in_features=768, out_features=2736, bias=True)
+              )
+              (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+        (image_tokenizer): VQKD(
+          (encoder): VisionTransformer(
+            (patch_embed): PatchEmbed(
+              (proj): Conv2d(3, 768, kernel_size=(16, 16), stride=(16, 16))
+            )
+            (pos_drop): Dropout(p=0.0, inplace=False)
+            (blocks): ModuleList(
+              (0-11): 12 x Block(
+                (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+                (attn): Attention(
+                  (qkv): Linear(in_features=768, out_features=2304, bias=False)
+                  (attn_drop): Dropout(p=0.0, inplace=False)
+                  (proj): Linear(in_features=768, out_features=768, bias=True)
+                  (proj_drop): Dropout(p=0.0, inplace=False)
+                )
+                (drop_path): Identity()
+                (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+                (mlp): Mlp(
+                  (fc1): Linear(in_features=768, out_features=3072, bias=True)
+                  (act): GELU(approximate='none')
+                  (fc2): Linear(in_features=3072, out_features=768, bias=True)
+                  (drop): Dropout(p=0.0, inplace=False)
+                )
+              )
+            )
+            (norm): Identity()
+            (fc_norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+            (head): Identity()
+          )
+          (decoder): VisionTransformer(
+            (patch_embed): PatchEmbed(
+              (proj): Conv2d(32, 768, kernel_size=(1, 1), stride=(1, 1))
+            )
+            (pos_drop): Dropout(p=0.0, inplace=False)
+            (blocks): ModuleList(
+              (0): Block(
+                (norm1): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+                (attn): Attention(
+                  (qkv): Linear(in_features=768, out_features=2304, bias=False)
+                  (attn_drop): Dropout(p=0.0, inplace=False)
+                  (proj): Linear(in_features=768, out_features=768, bias=True)
+                  (proj_drop): Dropout(p=0.0, inplace=False)
+                )
+                (drop_path): Identity()
+                (norm2): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+                (mlp): Mlp(
+                  (fc1): Linear(in_features=768, out_features=3072, bias=True)
+                  (act): GELU(approximate='none')
+                  (fc2): Linear(in_features=3072, out_features=768, bias=True)
+                  (drop): Dropout(p=0.0, inplace=False)
+                )
+              )
+            )
+            (norm): Identity()
+            (fc_norm): LayerNorm((768,), eps=1e-06, elementwise_affine=True)
+            (head): Identity()
+          )
+          (quantize): NormEMAVectorQuantizer(
+            (embedding): EmbeddingEMA()
+            (all_reduce_fn): Identity()
+          )
+          (encode_task_layer): Sequential(
+            (0): Linear(in_features=768, out_features=768, bias=True)
+            (1): Tanh()
+            (2): Linear(in_features=768, out_features=32, bias=True)
+          )
+          (decode_task_layer): Sequential(
+            (0): Linear(in_features=768, out_features=768, bias=True)
+            (1): Tanh()
+            (2): Linear(in_features=768, out_features=512, bias=True)
+          )
+        )
+      )
+    )
+  )
+  (search): BeamSearch()
+)
