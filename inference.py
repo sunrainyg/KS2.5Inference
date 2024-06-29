@@ -5,7 +5,7 @@ import re
 import os
 import ast
 import numpy as np
-# import tiktoken
+import tiktoken
 import sentencepiece
 import torch
 from tqdm import tqdm
@@ -38,7 +38,7 @@ def get_args():
 	parser.add_argument("--out_dir", "-o", type=str, default="./", help="Output directory.")
 	parser.add_argument("--do_ocr", action='store_true', default=False)
 	parser.add_argument("--do_md", action='store_true', default=False)
-	parser.add_argument("--ckpt", "-c", type=str, default="/home/yulugan/msranlpintern/yulu/trm-b3/exp/0612_main_exp/0612-mllm-base-6e4-bsz32gc1-g8-mllmce_oltk/checkpoint_last.pt")
+	parser.add_argument("--ckpt", "-c", type=str, default="/home/yulugan/msranlpintern/yulu/trm-b3/exp/0612_main_exp/0612-mllm-base-6e4-bsz32gc1-g8-mllmce_oltk/checkpoint_1_22500.pt")
 	parser.add_argument("--use_preprocess", action='store_true', default=False, help="")
 	parser.add_argument("--hw_ratio_adj_upper_span", type=parse_list, default=[1.5, 5])
 	parser.add_argument("--hw_ratio_adj_lower_span", type=parse_list, default=[0.5, 1.0])
@@ -157,8 +157,8 @@ def init(args):
 	generator = task.build_generator(models, cfg.generation)
 	print("generator:", generator)
 	generator.max_len_a = 1.0
-	# tokenizer = tiktoken.get_encoding("cl100k_base")
-	tokenizer = sentencepiece.SentencePieceProcessor(model_file="/home/yulugan/msranlpintern/yulu/data/sentencepiece.bpe.model")
+	tokenizer = tiktoken.get_encoding("cl100k_base")
+	# tokenizer = sentencepiece.SentencePieceProcessor(model_file="/home/yulugan/msranlpintern/yulu/data/sentencepiece.bpe.model")
 	image_processor = AutoProcessor.from_pretrained("google/pix2struct-base", is_vqa=False)
 
 	return task, models, generator, image_processor, dictionary, tokenizer
