@@ -3,7 +3,8 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
-
+import torch._dynamo
+torch._dynamo.config.suppress_errors = True
 import os
 import logging
 from dataclasses import dataclass, field
@@ -508,7 +509,7 @@ class MultimodalLanguageModel(FairseqLanguageModel):
         )
 
         # pretrained_weights = "/docker/data_dir/conversationhub/wenwan/k3/beitv2/vqkd_encoder_base_decoder_1x768x12_clip-d93179da.pth"
-        pretrained_weights = "/home/yulugan/msranlpintern/yulu/code/trm-b3/vqkd_encoder_base_decoder_1x768x12_clip-d93179da.pth"
+        pretrained_weights = "/home/yulu_gan/UniMLLM/pretrained_weights/vqkd_encoder_base_decoder_1x768x12_clip-d93179da.pth"
         image_tokenizer = create_model(
             "vqkd_encoder_base_decoder_1x768x12_clip",
             pretrained=True,

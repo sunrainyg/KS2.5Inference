@@ -34,11 +34,11 @@ def parse_list(arg):
 
 def get_args():
 	parser = argparse.ArgumentParser()
-	parser.add_argument("--image", "-i", type=str, default="/home/yulugan/msranlpintern/yulu/data/saved_ocr/image_1.png", help="Input image")
+	parser.add_argument("--image", "-i", type=str, default="/home/yulu_gan/UniMLLM/dataset/saved_ocr/image_1.png", help="Input image")
 	parser.add_argument("--out_dir", "-o", type=str, default="./", help="Output directory.")
 	parser.add_argument("--do_ocr", action='store_true', default=False)
 	parser.add_argument("--do_md", action='store_true', default=False)
-	parser.add_argument("--ckpt", "-c", type=str, default="/home/yulugan/msranlpintern/yulu/trm-b3/exp/0612_main_exp/0612-mllm-base-6e4-bsz32gc1-g8-mllmce_oltk/checkpoint_1_22500.pt")
+	parser.add_argument("--ckpt", "-c", type=str, default="/om2/group/cbmm/yl/checkpoint_1_22000.pt")
 	parser.add_argument("--use_preprocess", action='store_true', default=False, help="")
 	parser.add_argument("--hw_ratio_adj_upper_span", type=parse_list, default=[1.5, 5])
 	parser.add_argument("--hw_ratio_adj_lower_span", type=parse_list, default=[0.5, 1.0])
